@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <Header />
-      <List news={news} />
+      <List news={news.filter((item) => item.title)} />
     </>
   );
 }
