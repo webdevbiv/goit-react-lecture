@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import Header from "./components/Header/Header";
 import { fetchNews } from "./services/api";
+
+import Header from "./components/Header/Header";
+import List from "./components/List/List";
+
+import "./App.css";
 
 function App() {
   const [news, setNews] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -20,13 +24,7 @@ function App() {
   return (
     <>
       <Header />
-      <ul>
-        {news.map((item) => (
-          <li key={item.objectID}>
-            <a href={item.url}>{item.title}</a>
-          </li>
-        ))}
-      </ul>
+      <List news={news} />
     </>
   );
 }
