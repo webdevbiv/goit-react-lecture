@@ -1,10 +1,10 @@
 import { Field, Form, Formik } from "formik";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearch }) => {
   const initialValues = { search: "" };
 
   const onSubmit = (values, actions) => {
-    console.log(values);
+    handleSearch(values.search);
     actions.resetForm();
   };
 

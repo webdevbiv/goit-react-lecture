@@ -3,8 +3,8 @@ const List = ({ news }) => {
     <ul>
       {news.map((item) => (
         <li key={item.objectID}>
-          <a href={item.url} target="_blank">
-            {item.title}
+          <a href={item.url || item.story_url} target="_blank">
+            {item.title || item.story_title}
           </a>
         </li>
       ))}
