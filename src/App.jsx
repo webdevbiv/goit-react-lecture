@@ -1,17 +1,32 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
-import axios from "axios";
+import { fetchNews } from "./services/api";
 
 function App() {
+  const [news, setNews] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://hn.algolia.com/api/v1/search")
-      .then((res) => console.log(res));
-  });
+    const getData = async () => {
+      try {
+        const data = await fetchNews();
+        setNews(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <>
       <Header />
+      <ul>
+        {news.map((item) => (
+          <li key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
