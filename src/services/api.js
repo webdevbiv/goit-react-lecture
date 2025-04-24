@@ -11,3 +11,10 @@ export const fetchNews = async (search, page, hitsPerPage, signal) => {
 
   return response.data;
 };
+
+export const fetchUsers = async () => {
+  const response = await axios.get(`https://dummyjson.com/users`);
+  // console.log(response.data);
+
+  return response.data;
+};

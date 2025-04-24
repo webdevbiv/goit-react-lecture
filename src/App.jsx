@@ -16,6 +16,7 @@ import About from "./pages/About/About";
 import Aim from "./pages/About/Aim";
 import Team from "./pages/About/Team";
 import History from "./pages/About/History";
+import Users from "./pages/Users/Users";
 
 function App() {
   const { user, login } = useContext(AuthContext);
@@ -100,6 +101,7 @@ function App() {
           <Route path="team" element={<Team />} />
           <Route path="history" element={<History />} />
         </Route>
+        <Route path="/users" element={<Users />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <select
