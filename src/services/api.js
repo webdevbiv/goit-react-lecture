@@ -25,3 +25,10 @@ export const fetchUser = async (id) => {
 
   return response.data;
 };
+
+export const fetchPosts = async (id) => {
+  const response = await axios.get(`https://dummyjson.com/users/${id}/posts`);
+  // console.log(response.data);
+
+  return response.data;
+};

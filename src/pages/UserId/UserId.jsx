@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchUser } from "../../services/api";
 
 const UserId = () => {
@@ -10,7 +10,7 @@ const UserId = () => {
     const getUser = async () => {
       try {
         const data = await fetchUser(id);
-        console.log("UserId", data);
+        // console.log("UserId", data);
 
         setUser(data);
       } catch (error) {
@@ -25,9 +25,16 @@ const UserId = () => {
     <div>
       <span>User ID: {id}</span>
       {user && (
-        <span>
-          User Name: {user.firstName} {user.lastName}
-        </span>
+        <>
+          <span>
+            User Name: {user.firstName} {user.lastName}
+          </span>
+          <nav>
+            <NavLink to="info">Info</NavLink>
+            <NavLink to="posts">Posts</NavLink>
+          </nav>
+          <Outlet />
+        </>
       )}
     </div>
   );
