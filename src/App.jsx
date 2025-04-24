@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchNews } from "./services/api";
 
+import { AuthContext } from "./providers/authProvider";
+import SearchBar from "./components/SearchBar/SearchBar";
 import Header from "./components/Header/Header";
 import List from "./components/List/List";
 
-import "./App.css";
-import SearchBar from "./components/SearchBar/SearchBar";
 import toast from "react-hot-toast";
 
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+
 function App() {
+  const { user, login } = useContext(AuthContext);
+  const [userName, setUserName] = useState(``);
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
@@ -60,14 +65,32 @@ function App() {
   const handleChangePerPage = (e) => {
     const newHitsPerPage = Number(e.target.value);
     setHitsPerPage(newHitsPerPage);
-    setNews((prevNews) =>
-      [...prevNews].slice(0, prevNews.length - newHitsPerPage)
-    );
+    setNews([]);
+    setPage(0);
   };
+
+  if (!user)
+    return (
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            login(userName);
+          }}
+        >
+          <input type="text" onChange={(e) => setUserName(e.target.value)} />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
 
   return (
     <>
       <Header />
+      <Routes>
+        <Route path="/" element={<h2>Home</h2>} />
+        <Route path="/about" element={<h2>Aboutpage</h2>} />
+      </Routes>
       <select
         name="hitsPerPage"
         id="hitsPerPage"
