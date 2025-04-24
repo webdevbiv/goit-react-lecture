@@ -5,7 +5,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("Leeroy Jenkins");
   const login = (user) => setUser(user);
   const logout = () => setUser(null);
-  console.log("AuthProvider");
+  // console.log("AuthProvider");
 
   const value = { user, login, logout };
 

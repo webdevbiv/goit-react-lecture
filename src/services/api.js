@@ -7,7 +7,7 @@ export const fetchNews = async (search, page, hitsPerPage, signal) => {
       signal,
     }
   );
-  console.log(response.data);
+  // console.log(response.data);
 
   return response.data;
 };

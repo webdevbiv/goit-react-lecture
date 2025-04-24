@@ -10,6 +10,12 @@ import toast from "react-hot-toast";
 
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import NotFound from "./pages/NotFound/NotFound";
+import About from "./pages/About/About";
+import Aim from "./pages/About/Aim";
+import Team from "./pages/About/Team";
+import History from "./pages/About/History";
 
 function App() {
   const { user, login } = useContext(AuthContext);
@@ -88,8 +94,13 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<h2>Home</h2>} />
-        <Route path="/about" element={<h2>Aboutpage</h2>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />}>
+          <Route path="aim" element={<Aim />} />
+          <Route path="team" element={<Team />} />
+          <Route path="history" element={<History />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <select
         name="hitsPerPage"
