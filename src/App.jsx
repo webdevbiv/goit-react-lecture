@@ -17,6 +17,7 @@ import Aim from "./pages/About/Aim";
 import Team from "./pages/About/Team";
 import History from "./pages/About/History";
 import Users from "./pages/Users/Users";
+import UserId from "./pages/UserId/UserId";
 
 function App() {
   const { user, login } = useContext(AuthContext);
@@ -102,6 +103,7 @@ function App() {
           <Route path="history" element={<History />} />
         </Route>
         <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<UserId />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <select
